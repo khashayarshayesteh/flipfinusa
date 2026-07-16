@@ -1,6 +1,8 @@
 import { CheckCircle2, PlayCircle } from "lucide-react";
+
 const installationVideo =
   "https://res.cloudinary.com/gjyoytz8/video/upload/v1784220340/VID-20250402-WA0000_bz7m0e.mp4";
+
 const InstallationVideo = () => {
   const steps = [
     "Position the mounting system underneath the paddle board",
@@ -10,7 +12,7 @@ const InstallationVideo = () => {
 
   const handlePlayVideo = () => {
     const video = document.querySelector<HTMLVideoElement>(
-      "#flipfin-installation-video",
+      "#flipfin-installation-video"
     );
 
     video?.play();
@@ -57,7 +59,6 @@ const InstallationVideo = () => {
                   className="mt-1 shrink-0 text-sky-600"
                   size={22}
                 />
-
                 <p className="leading-7 text-slate-700">{step}</p>
               </div>
             ))}
