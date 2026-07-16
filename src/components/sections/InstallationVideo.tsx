@@ -1,6 +1,6 @@
 import { CheckCircle2, PlayCircle } from "lucide-react";
-import installationVideo from "../../assets/videos/flipfin-installation.mp4";
-
+const installationVideo =
+  "https://res.cloudinary.com/gjyoytz8/video/upload/v1784220340/VID-20250402-WA0000_bz7m0e.mp4";
 const InstallationVideo = () => {
   const steps = [
     "Position the mounting system underneath the paddle board",
