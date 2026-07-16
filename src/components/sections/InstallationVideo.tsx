@@ -1,5 +1,5 @@
 import { CheckCircle2, PlayCircle } from "lucide-react";
-import installationVideo from "../../assets/videos/flipfin-installation.mp4";
+import installationVideo from "../../assets/videos/flipfin-installation.MP4";
 
 const InstallationVideo = () => {
   const steps = [
