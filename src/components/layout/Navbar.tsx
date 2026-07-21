@@ -4,14 +4,12 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../assets/images/flipfin-logo.png";
 
-const links = [
-  { href: "/", label: "Home" },
+const homeSections = [
   { href: "/#product", label: "Product" },
   { href: "/#benefits", label: "Benefits" },
   { href: "/#compatibility", label: "Compatibility" },
   { href: "/#installation", label: "Installation" },
   { href: "/#faq", label: "FAQ" },
-  { href: "/about", label: "About" },
 ];
 
 const Navbar = () => {
@@ -20,20 +18,13 @@ const Navbar = () => {
 
   const closeMenu = () => setMobileMenuOpen(false);
 
-  const isActive = (href: string) => {
-    if (href === "/") {
-      return location.pathname === "/" && !location.hash;
-    }
-
-    if (href.startsWith("/#")) {
-      return location.pathname === "/" && location.hash === href.substring(1);
-    }
-
-    return location.pathname === href;
-  };
+  const linkClasses = (active: boolean) =>
+    `text-sm font-semibold transition-colors ${
+      active ? "text-sky-600" : "text-slate-700 hover:text-sky-600"
+    }`;
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-[100] border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-[100] border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8">
         <Link to="/" className="flex items-center gap-3" onClick={closeMenu}>
           <img
@@ -41,7 +32,6 @@ const Navbar = () => {
             alt="Flip Fin logo"
             className="h-14 w-14 rounded-full bg-white object-contain"
           />
-
           <div>
             <p className="text-xl font-bold tracking-tight text-slate-950">
               Flip Fin
@@ -53,19 +43,39 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden items-center gap-5 lg:flex">
-          {links.map(({ href, label }) => (
+          <Link
+            to="/"
+            className={linkClasses(location.pathname === "/" && !location.hash)}
+          >
+            Home
+          </Link>
+
+          {homeSections.map(({ href, label }) => (
             <a
               key={href}
               href={href}
-              className={`text-sm font-medium transition-colors ${
-                isActive(href)
-                  ? "text-sky-600"
-                  : "text-slate-700 hover:text-sky-600"
-              }`}
+              className={linkClasses(
+                location.pathname === "/" &&
+                  location.hash === href.replace("/", ""),
+              )}
             >
               {label}
             </a>
           ))}
+
+          <Link
+            to="/about"
+            className={linkClasses(location.pathname === "/about")}
+          >
+            About
+          </Link>
+
+          <Link
+            to="/contact"
+            className={linkClasses(location.pathname === "/contact")}
+          >
+            Contact
+          </Link>
 
           <a
             href="/#order"
@@ -89,7 +99,15 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <nav className="border-t border-slate-200 bg-white px-6 py-5 shadow-lg lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-2">
-            {links.map(({ href, label }) => (
+            <Link
+              to="/"
+              className="rounded-lg px-4 py-3 font-medium text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
+              onClick={closeMenu}
+            >
+              Home
+            </Link>
+
+            {homeSections.map(({ href, label }) => (
               <a
                 key={href}
                 href={href}
@@ -99,6 +117,22 @@ const Navbar = () => {
                 {label}
               </a>
             ))}
+
+            <Link
+              to="/about"
+              className="rounded-lg px-4 py-3 font-medium text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
+              onClick={closeMenu}
+            >
+              About
+            </Link>
+
+            <Link
+              to="/contact"
+              className="rounded-lg px-4 py-3 font-medium text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
+              onClick={closeMenu}
+            >
+              Contact
+            </Link>
 
             <a
               href="/#order"

@@ -1,18 +1,19 @@
 import { Outlet } from "react-router-dom";
+
 import Footer from "./Footer";
+import HashScroll from "./HashScroll";
 import Navbar from "./Navbar";
 
 const Layout = () => {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <>
+      <HashScroll />
       <Navbar />
-
       <main>
         <Outlet />
       </main>
-
       <Footer />
-    </div>
+    </>
   );
 };
 
