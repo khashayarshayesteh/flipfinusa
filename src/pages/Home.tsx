@@ -90,7 +90,7 @@ const Home = () => {
                 href="#installation"
                 className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-7 py-4 font-semibold text-slate-800 transition hover:border-sky-500 hover:bg-sky-50"
               >
-                Watch Installation
+                See Flip Fin in Action
               </a>
             </div>
           </div>
@@ -109,6 +109,10 @@ const Home = () => {
             />
           </div>
         </div>
+      </section>
+
+      <section id="installation" className="scroll-mt-28 bg-slate-50">
+        <InstallationVideo />
       </section>
 
       <section id="product" className="scroll-mt-28 bg-white px-6 py-24 lg:px-8">
@@ -241,10 +245,6 @@ const Home = () => {
             <ArrowRight size={19} />
           </Link>
         </div>
-      </section>
-
-      <section id="installation" className="scroll-mt-28 bg-slate-50">
-        <InstallationVideo />
       </section>
 
       <section id="faq" className="scroll-mt-28 bg-white px-6 py-24 lg:px-8">

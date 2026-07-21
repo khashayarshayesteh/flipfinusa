@@ -5,10 +5,10 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/flipfin-logo.png";
 
 const homeSections = [
+  { href: "/#installation", label: "Installation" },
   { href: "/#product", label: "Product" },
   { href: "/#benefits", label: "Benefits" },
   { href: "/#compatibility", label: "Compatibility" },
-  { href: "/#installation", label: "Installation" },
   { href: "/#faq", label: "FAQ" },
 ];
 
