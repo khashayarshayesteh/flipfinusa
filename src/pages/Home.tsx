@@ -1,81 +1,142 @@
 import {
   ArrowRight,
   CheckCircle2,
+  ChevronDown,
   RotateCcw,
-  Truck,
+  ShieldCheck,
   Waves,
   Wrench,
 } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import heroImage from "../assets/images/FI1.png";
+import logo from "../assets/images/flipfin-logo.png";
+import productImage1 from "../assets/images/flipfin-product1.jpg";
+import productImage2 from "../assets/images/flipfin-product2.jpg";
+import productImage3 from "../assets/images/flipfin-product3.jpg";
+import productImage4 from "../assets/images/flipfin-product4.jpg";
+import productImage5 from "../assets/images/flipfin-product5.jpg";
+import productImage6 from "../assets/images/flipfin-product6.png";
 import InstallationVideo from "../components/sections/InstallationVideo";
+import RotatingCube from "../components/sections/RotatingCube";
 
 const purchaseUrl = "/contact";
+const productPrice = "$39.99";
+const shippingPrice = "$9.99";
+
+const features = [
+  {
+    icon: RotateCcw,
+    title: "Compact and Convenient",
+    description:
+      "Fold the fin into a low-profile position to make storage, transportation, and handling easier.",
+  },
+  {
+    icon: Wrench,
+    title: "Effortless Setup",
+    description:
+      "Secure or release the fin in seconds with a simple push or pull operation.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Durable Performance",
+    description:
+      "Designed to provide reliable stability, control, and handling while you are paddling.",
+  },
+];
+
+const benefits = [
+  "Compact, low-profile position for storage",
+  "Quick push or pull operation",
+  "Less hassle during transportation",
+  "Reliable stability and control on the water",
+];
+
+const compatibilityItems = [
+  {
+    title: "Check Your Fin Box",
+    description:
+      "Compare your paddle board's existing fin connection with the Flip Fin mounting system before ordering.",
+  },
+  {
+    title: "Measure the Mounting Area",
+    description:
+      "Make sure there is enough room underneath the paddle board for the mounting hardware and folding movement.",
+  },
+  {
+    title: "Contact Us When Unsure",
+    description:
+      "Send us clear photos of your current fin, fin box, and mounting area so we can help review compatibility.",
+  },
+];
+
+const includedItems = [
+  "Flip Fin paddle board fin system",
+  "Required mounting hardware",
+  "Installation video and instructions",
+  "Shipping within the United States",
+  "Secure hosted checkout",
+];
+
+const faqItems = [
+  {
+    question: "Does Flip Fin fit every paddle board?",
+    answer:
+      "Compatibility can vary because paddle boards use different fin boxes and mounting systems. Please review your board before ordering or contact us with clear photos.",
+  },
+  {
+    question: "Is installation difficult?",
+    answer:
+      "Installation is designed to be straightforward. The product includes mounting hardware, instructions, and an installation video.",
+  },
+  {
+    question: "Do I need to remove the fin for transportation?",
+    answer:
+      "No. Flip Fin is designed to fold into a lower-profile position to make carrying, transporting, and storing the board easier.",
+  },
+  {
+    question: "Can I paddle normally with Flip Fin?",
+    answer:
+      "Yes. Return the fin to its paddling position and make sure it is properly secured before entering the water.",
+  },
+  {
+    question: "What is included with my order?",
+    answer:
+      "Your order includes the Flip Fin system, required mounting hardware, installation instructions, and access to the installation video.",
+  },
+];
 
 const Home = () => {
-  const features = [
-    {
-      icon: RotateCcw,
-      title: "Flip It Under the Board",
-      description:
-        "Flip the fin into its transport position instead of removing it after every paddle boarding trip.",
-    },
-    {
-      icon: Truck,
-      title: "Easier Transportation",
-      description:
-        "Carry, store, and transport your paddle board more easily while helping protect the fin from damage.",
-    },
-    {
-      icon: Wrench,
-      title: "Install It Once",
-      description:
-        "Complete the initial installation, then use the flipping mechanism whenever you need to transport the board.",
-    },
-  ];
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const flipFinBenefits = [
-    "Flip the fin underneath the paddle board",
-    "Avoid removing and reinstalling the fin every trip",
-    "Make transportation and storage easier",
-    "Help protect the fin while carrying the board",
-  ];
-
-  const includedItems = [
-    "FlipFin paddle board fin system",
-    "Required mounting hardware",
-    "Installation video and instructions",
-    "Shipping within the United States",
-    "Secure hosted checkout",
-  ];
+  const toggleFaq = (index: number) => {
+    setOpenFaq((current) => (current === index ? null : index));
+  };
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative flex min-h-[780px] items-center overflow-hidden bg-slate-950 px-6 pb-24 pt-36 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(14,165,233,0.3),_transparent_42%)]" />
-
-        <div className="absolute -bottom-64 -right-52 h-[650px] w-[650px] rounded-full border border-sky-400/20" />
-
-        <div className="absolute left-0 top-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
+      <section className="relative flex min-h-[780px] items-center overflow-hidden bg-white px-6 pb-24 pt-40 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-cyan-50" />
+        <div className="absolute -right-40 top-10 h-96 w-96 rounded-full bg-sky-100/70 blur-3xl" />
+        <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-cyan-100/60 blur-3xl" />
 
         <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="relative z-10">
-            <p className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm font-semibold text-sky-300">
+            <p className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-100 px-4 py-2 text-sm font-semibold text-sky-700">
               <Waves size={18} />
-              The Flipping Paddle Board Fin
+              Revolutionary Foldable Paddle Board Fin
             </p>
 
-            <h1 className="mt-6 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Flip your fin.
-              <span className="block text-sky-400">Carry your board.</span>
+            <h1 className="mt-6 text-5xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+              Store smarter.
+              <span className="block text-sky-500">Paddle further.</span>
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
-              FlipFin folds underneath your paddle board to make carrying,
-              transportation, and storage easier—without removing the fin
-              every time.
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
+              Flip Fin folds into a compact, low-profile position for easier
+              storage, transportation, and handling. Secure or release the fin
+              in seconds and spend less time managing equipment and more time
+              on the water.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -83,27 +144,26 @@ const Home = () => {
                 href="#order"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-sky-500 px-7 py-4 font-semibold text-white transition hover:bg-sky-600"
               >
-                Buy FlipFin — $39.99
+                Buy Flip Fin — {productPrice}
                 <ArrowRight size={19} />
               </a>
 
               <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center rounded-lg border border-white/25 px-7 py-4 font-semibold text-white transition hover:border-white hover:bg-white/10"
+                href="#installation"
+                className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-7 py-4 font-semibold text-slate-800 transition hover:border-sky-500 hover:bg-sky-50"
               >
                 Watch How It Works
               </a>
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {flipFinBenefits.slice(0, 2).map((benefit) => (
+              {benefits.slice(0, 2).map((benefit) => (
                 <div key={benefit} className="flex items-start gap-3">
                   <CheckCircle2
                     size={21}
-                    className="mt-0.5 shrink-0 text-sky-400"
+                    className="mt-0.5 shrink-0 text-sky-500"
                   />
-
-                  <span className="text-sm leading-6 text-slate-300">
+                  <span className="text-sm leading-6 text-slate-600">
                     {benefit}
                   </span>
                 </div>
@@ -111,34 +171,43 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center lg:justify-end">
-            <div className="absolute inset-8 rounded-full bg-sky-500/10 blur-3xl" />
-
-            <img
-              src={heroImage}
-              alt="Paddle board with a FlipFin mounted underneath the board"
-              className="relative z-10 w-full max-w-4xl rounded-3xl object-cover shadow-2xl shadow-sky-950/40 transition duration-500 hover:scale-[1.015]"
+          <div className="relative z-10 flex min-h-[420px] items-center justify-center lg:justify-end">
+            <div className="absolute inset-8 rounded-full bg-sky-200/50 blur-3xl" />
+            <RotatingCube
+              images={[
+                productImage1,
+                productImage2,
+                productImage3,
+                productImage4,
+                productImage5,
+                productImage6,
+              ]}
             />
           </div>
         </div>
       </section>
 
-      {/* Why FlipFin */}
-      <section className="px-6 py-24 lg:px-8">
+      <section id="product" className="scroll-mt-28 bg-white px-6 py-24 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="font-semibold uppercase tracking-widest text-sky-600">
-              Why FlipFin?
+            <img
+              src={logo}
+              alt="Flip Fin logo"
+              className="mx-auto h-28 w-28 rounded-full bg-white object-contain shadow-md"
+            />
+
+            <p className="mt-8 font-semibold uppercase tracking-widest text-sky-600">
+              The Flip Fin System
             </p>
 
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-              Stop removing your paddle board fin after every trip
+              A foldable fin built for easier storage and handling
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Traditional fins may need to be removed before transporting or
-              storing the paddle board. FlipFin gives you a simpler option:
-              flip the fin underneath the board and move on.
+              No more struggling with a bulky fin while storing your board at
+              home, loading it into your vehicle, or transporting it to the
+              water.
             </p>
           </div>
 
@@ -151,11 +220,9 @@ const Home = () => {
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
                   <Icon size={28} />
                 </div>
-
                 <h3 className="mt-6 text-2xl font-bold text-slate-950">
                   {title}
                 </h3>
-
                 <p className="mt-4 leading-7 text-slate-600">{description}</p>
               </article>
             ))}
@@ -163,16 +230,160 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Order section */}
-      <section
-        id="order"
-        className="scroll-mt-24 bg-sky-50 px-6 py-24 lg:px-8"
-      >
+      <section id="benefits" className="scroll-mt-28 bg-slate-950 px-6 py-24 text-white lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
+          <div>
+            <p className="font-semibold uppercase tracking-widest text-sky-400">
+              Store Smarter. Paddle Further.
+            </p>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+              Spend less time managing your gear
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-slate-300">
+              Flip Fin helps make apartment storage, road trips, vehicle
+              loading, and everyday board handling more convenient.
+            </p>
+
+            <div className="mt-8 space-y-4">
+              {benefits.map((benefit) => (
+                <div key={benefit} className="flex items-start gap-3">
+                  <CheckCircle2
+                    size={22}
+                    className="mt-1 shrink-0 text-sky-400"
+                  />
+                  <p className="leading-7 text-slate-200">{benefit}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-3xl shadow-2xl">
+            <img
+              src={productImage1}
+              alt="Close-up of the Flip Fin system mounted on a paddle board"
+              className="aspect-[4/3] h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="compatibility" className="scroll-mt-28 bg-slate-100 px-6 py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="font-semibold uppercase tracking-widest text-sky-600">
+              Compatibility
+            </p>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+              Check your paddle board before ordering
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Paddle boards can use different fin boxes and mounting systems.
+              Review your setup before purchasing.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {compatibilityItems.map((item, index) => (
+              <article
+                key={item.title}
+                className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-500 font-bold text-white">
+                  {index + 1}
+                </div>
+                <h3 className="mt-6 text-2xl font-bold text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-4 leading-7 text-slate-600">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-12 rounded-3xl bg-slate-950 p-8 text-white sm:p-10">
+            <div className="flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center">
+              <div className="max-w-3xl">
+                <h3 className="text-2xl font-bold">
+                  Not sure whether Flip Fin fits?
+                </h3>
+                <p className="mt-4 leading-7 text-slate-300">
+                  Send us clear photos of your current fin, fin box, and the
+                  bottom of your paddle board. We can help review compatibility.
+                </p>
+              </div>
+
+              <Link
+                to="/contact"
+                className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-sky-500 px-6 py-4 font-semibold text-white transition hover:bg-sky-600"
+              >
+                Contact Us
+                <ArrowRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="installation" className="scroll-mt-28 bg-slate-50">
+        <InstallationVideo />
+      </section>
+
+      <section id="faq" className="scroll-mt-28 bg-white px-6 py-24 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center">
+            <p className="font-semibold uppercase tracking-widest text-sky-600">
+              Frequently Asked Questions
+            </p>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+              Questions about Flip Fin
+            </h2>
+          </div>
+
+          <div className="mt-14 space-y-4">
+            {faqItems.map((item, index) => {
+              const isOpen = openFaq === index;
+
+              return (
+                <article
+                  key={item.question}
+                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+                >
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left sm:px-8"
+                    aria-expanded={isOpen}
+                    onClick={() => toggleFaq(index)}
+                  >
+                    <span className="text-lg font-bold text-slate-950">
+                      {item.question}
+                    </span>
+                    <ChevronDown
+                      size={22}
+                      className={`shrink-0 text-sky-600 transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <div className="border-t border-slate-100 px-6 py-5 sm:px-8">
+                      <p className="leading-7 text-slate-600">{item.answer}</p>
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="order" className="scroll-mt-28 bg-sky-50 px-6 py-24 lg:px-8">
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
           <div className="overflow-hidden rounded-3xl bg-slate-200 shadow-xl">
             <img
-              src={heroImage}
-              alt="FlipFin Paddle Board Fin System"
+              src={productImage1}
+              alt="Flip Fin paddle board fin system"
               className="aspect-[4/3] h-full w-full object-cover"
             />
           </div>
@@ -181,37 +392,31 @@ const Home = () => {
             <p className="font-semibold uppercase tracking-widest text-sky-600">
               Order Online
             </p>
-
             <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-              FlipFin Paddle Board Fin System
+              Flip Fin Paddle Board Fin System
             </h2>
-
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Install FlipFin once, then flip the fin underneath your paddle
-              board whenever you need to carry, transport, or store it.
+              Fold the fin into a lower-profile position whenever you need to
+              carry, transport, or store your paddle board.
             </p>
 
             <div className="mt-8 flex items-end gap-3">
-              <p className="text-5xl font-bold text-slate-950">$39.99</p>
+              <p className="text-5xl font-bold text-slate-950">{productPrice}</p>
               <p className="pb-1 text-slate-500">per system</p>
             </div>
 
             <div className="mt-5 rounded-xl border border-sky-200 bg-white p-5 shadow-sm">
               <div className="flex justify-between gap-4">
                 <span className="text-slate-600">Product</span>
-                <span className="font-semibold text-slate-950">$39.99</span>
+                <span className="font-semibold text-slate-950">
+                  {productPrice}
+                </span>
               </div>
-
               <div className="mt-3 flex justify-between gap-4">
                 <span className="text-slate-600">U.S. shipping</span>
-                <span className="font-semibold text-slate-950">$9.99</span>
-              </div>
-
-              <div className="mt-4 flex justify-between gap-4 border-t border-slate-200 pt-4">
-                <span className="font-bold text-slate-950">
-                  Total before applicable tax
+                <span className="font-semibold text-slate-950">
+                  {shippingPrice}
                 </span>
-                <span className="font-bold text-slate-950">$49.98</span>
               </div>
             </div>
 
@@ -222,7 +427,6 @@ const Home = () => {
                     className="mt-1 shrink-0 text-sky-600"
                     size={21}
                   />
-
                   <p className="leading-7 text-slate-700">{item}</p>
                 </div>
               ))}
@@ -235,7 +439,7 @@ const Home = () => {
                 rel="noopener noreferrer"
                 className="mt-9 inline-flex items-center justify-center gap-2 rounded-lg bg-sky-500 px-8 py-4 text-lg font-semibold text-white transition hover:bg-sky-600"
               >
-                Buy FlipFin — $39.99
+                Buy Flip Fin
                 <ArrowRight size={20} />
               </a>
             ) : (
@@ -243,166 +447,23 @@ const Home = () => {
                 to={purchaseUrl}
                 className="mt-9 inline-flex items-center justify-center gap-2 rounded-lg bg-sky-500 px-8 py-4 text-lg font-semibold text-white transition hover:bg-sky-600"
               >
-                Order FlipFin — $39.99
+                Order Flip Fin
                 <ArrowRight size={20} />
               </Link>
             )}
-
-            <p className="mt-4 text-sm leading-6 text-slate-500">
-              $9.99 shipping within the United States. Applicable sales tax may
-              be added during checkout.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Before and after */}
-      <section className="bg-slate-100 px-6 py-24 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="font-semibold uppercase tracking-widest text-sky-600">
-              A Simpler Experience
-            </p>
-
-            <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-              Remove and reinstall—or simply flip
-            </h2>
-          </div>
-
-          <div className="mt-14 grid gap-8 lg:grid-cols-2">
-            <article className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
-              <p className="text-sm font-bold uppercase tracking-widest text-slate-500">
-                Traditional Fixed Fin
-              </p>
-
-              <h3 className="mt-4 text-3xl font-bold text-slate-950">
-                More steps before transportation
-              </h3>
-
-              <div className="mt-8 space-y-5">
-                {[
-                  "Remove the fin from the paddle board",
-                  "Keep the fin and hardware together",
-                  "Carry the fin separately",
-                  "Reinstall it before the next trip",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-slate-400" />
-                    <p className="leading-7 text-slate-600">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-
-            <article className="rounded-3xl bg-slate-950 p-8 text-white shadow-xl sm:p-10">
-              <p className="text-sm font-bold uppercase tracking-widest text-sky-400">
-                With FlipFin
-              </p>
-
-              <h3 className="mt-4 text-3xl font-bold">
-                Flip. Carry. Paddle.
-              </h3>
-
-              <div className="mt-8 space-y-5">
-                {[
-                  "Flip the fin underneath the board",
-                  "Carry or transport the paddle board",
-                  "Return the fin to its paddling position",
-                  "Get back on the water",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <CheckCircle2
-                      size={22}
-                      className="mt-1 shrink-0 text-sky-400"
-                    />
-
-                    <p className="leading-7 text-slate-200">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* Video */}
-      <div id="how-it-works" className="scroll-mt-24">
-        <InstallationVideo />
-      </div>
-
-      {/* Product story */}
-      <section className="bg-white px-6 py-24 lg:px-8">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
-          <div>
-            <p className="font-semibold uppercase tracking-widest text-sky-600">
-              Designed for Convenience
-            </p>
-
-            <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950">
-              A paddle board fin designed around transportation
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              FlipFin was created to solve a common paddle boarding problem:
-              transporting and storing a board with a fin extending underneath
-              it.
-            </p>
-
-            <p className="mt-5 text-lg leading-8 text-slate-600">
-              Its flipping design allows the fin to move into a more convenient
-              position underneath the board, helping paddlers spend less time
-              removing hardware and more time enjoying the water.
-            </p>
-
-            <Link
-              to="/about"
-              className="mt-8 inline-flex items-center gap-2 font-semibold text-sky-700 transition hover:text-sky-800"
-            >
-              Learn more about FlipFin USA
-              <ArrowRight size={18} />
-            </Link>
-          </div>
-
-          <div className="rounded-3xl bg-slate-950 p-9 text-white shadow-xl sm:p-12">
-            <RotateCcw size={50} className="text-sky-400" />
-
-            <h3 className="mt-6 text-3xl font-bold">
-              One fin. Two positions.
-            </h3>
-
-            <p className="mt-5 leading-8 text-slate-300">
-              Use the fin in its normal paddling position while on the water,
-              then flip it underneath the board when you are ready to carry,
-              transport, or store your paddle board.
-            </p>
-
-            <div className="mt-8 space-y-4 border-t border-white/10 pt-7">
-              {flipFinBenefits.map((benefit) => (
-                <div key={benefit} className="flex items-start gap-3">
-                  <CheckCircle2
-                    size={20}
-                    className="mt-1 shrink-0 text-sky-400"
-                  />
-
-                  <span className="leading-7 text-slate-200">{benefit}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
       <section className="bg-sky-500 px-6 py-20 lg:px-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">
           <div>
             <h2 className="text-4xl font-bold tracking-tight text-white">
-              Ready for easier paddle board transportation?
+              Ready for easier paddle board storage and transportation?
             </h2>
-
             <p className="mt-3 text-lg text-sky-50">
-              Order FlipFin for $39.99 plus $9.99 shipping within the United
-              States.
+              Store smarter, paddle further, and spend less time managing your
+              gear.
             </p>
           </div>
 
@@ -410,7 +471,7 @@ const Home = () => {
             href="#order"
             className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-7 py-4 font-semibold text-slate-950 transition hover:bg-slate-100"
           >
-            Order FlipFin
+            Order Flip Fin
             <ArrowRight size={19} />
           </a>
         </div>
